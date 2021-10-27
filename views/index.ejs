@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <div>
+      <p><a href="">Add Expense</a></p>
+    </div><br>
+    <div>
+      <table border="1px">
+        <tbody>
+          <% expenses.forEach(function(expense) { %>
+              <tr data-guid="<%= expense.id %>">
+                  <td><a href="/expense/<%= expense.id %>"><%= expense.name %></a></td>
+                  <td><%= expense.amount %></td> 
+                  <td><%= expense.repeat ? "Recurring" : "One-time" %></td> 
+                  <td><%= dayjs(expense.startDate).format() %></td> 
+     
+              </tr>
+          <% }); %>
+          </tbody>
+      </table>
+      <pre>
+        When adding a bill I want to know:
+        - how many repeats to schedule
+        - will the amount vary? is there a range it should fall in?
+          - that lends to an upper and lower amount due so like if its my internet its fixed but electric might be lower=80 upper=160 actual=143 or something
+        - normal fields and stuff like name/due date/etc
+          - repeat schedule
+        ======= indev
+        * so we start with an "expenses" table 
+          - add to it
+          - edit things
+          - view the compiled projections
+      </pre>
+    </div>
+  </body>
+</html>
